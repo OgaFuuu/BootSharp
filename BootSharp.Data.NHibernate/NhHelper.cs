@@ -47,7 +47,9 @@ namespace BootSharp.Data.NHibernate
                         m.AutoMappings.Add(autoPersistanceModel);
                     }
                 });
-            factoryConfig.ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true));
+
+            // Exemple of schemaExport and create
+            // factoryConfig.ExposeConfiguration(cfg => new SchemaExport(cfg).Create(true, true));
 
             // Create factory
             var sessionFactory = factoryConfig.BuildSessionFactory();

@@ -16,7 +16,9 @@ namespace BootSharp.Tests.Data.NHibernate.Mappings
         protected override void MapForeignKeys()
         {
             // B has one A and A has many B
-            HasOne(b => b.A);
+            References(b => b.A)
+                .Column("A_Id")
+                .Not.Nullable();
 
             base.MapForeignKeys();
         }

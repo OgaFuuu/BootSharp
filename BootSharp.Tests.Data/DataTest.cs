@@ -57,17 +57,19 @@ namespace BootSharp.Tests.Data
             var repoB = UnitOfWork.GetRepository<B>();
             var listB = repoB.Read();
             repoB.Delete(listB);
+            UnitOfWork.Save();
 
             Context.Command("TRUNCATE TABLE AC");
+            UnitOfWork.Save();
 
             var repoC = UnitOfWork.GetRepository<C>();
             var listC = repoC.Read();
             repoC.Delete(listC);
+            UnitOfWork.Save();
 
             var repoA = UnitOfWork.GetRepository<A>();
             var listA = repoA.Read();
             repoA.Delete(listA);
-
             UnitOfWork.Save();
         }
     }

@@ -17,10 +17,11 @@ namespace BootSharp.Tests.Data.NHibernate.Mappings
         {
             // A has many B and B has one A
             HasMany(a => a.BCollection)
-                .Inverse();
+                .LazyLoad();
 
             // A has many C and C has many A, using join table AC
             HasManyToMany(a => a.CCollection)
+                .LazyLoad()
                 .Cascade.All()
                 .Table("AC");
 

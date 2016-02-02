@@ -1,5 +1,6 @@
 ﻿using BootSharp.Data.Interfaces;
 using NHibernate;
+using NHibernate.Criterion;
 using NHibernate.Linq;
 using System;
 using System.Collections.Generic;
@@ -34,7 +35,17 @@ namespace BootSharp.Data.NHibernate
         }
         public override T Read(params object[] keyValues)
         {
-            return Session.Get<T>(keyValues);
+            if(keyValues != null)
+            {
+                var criteria = Session.CreateCriteria<T>();
+                criteria.Add(Restrictions.Eq(Projections.Id(), keyValues[0]));
+
+                //TODO find a way to take more values into account.
+
+                return criteria.UniqueResult<T>();
+            }
+
+            return null;
         }
         public override IEnumerable<T> Read(Expression<Func<T, bool>> filteringExpression = null)
         {
