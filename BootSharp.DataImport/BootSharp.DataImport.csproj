@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>B_Sharp_logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -41,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataImportBase.cs" />
+    <Compile Include="DataImportException.cs" />
     <Compile Include="DataImportJob.cs" />
     <Compile Include="DataImportResult.cs" />
+    <Compile Include="DataImportRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +59,9 @@
       <Project>{b261e423-a71c-4b2e-aa8d-48f9e5c8b036}</Project>
       <Name>BootSharp.DataImport.Interfaces</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="B_Sharp_logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

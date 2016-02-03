@@ -170,7 +170,10 @@ namespace BootSharp.Tests.Data
         /// <summary>
         /// Child must return the unit of work at the end of this method.
         /// </summary>
-        protected abstract IUnitOfWork CreateUnitOfWork(IDataContext dataContext);
+        protected virtual IUnitOfWork CreateUnitOfWork(IDataContext dataContext)
+        {
+            return dataContext.CreateUnitOfWork();
+        }
 
         /// <summary>
         /// Clear all the datas in table for <see cref="A"/>, <see cref="B"/> and <see cref="C"/>.

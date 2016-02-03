@@ -23,9 +23,5 @@ namespace BootSharp.Tests.Data.NHibernate
         {
             return new NhDataContextTest();
         }
-        protected override IUnitOfWork CreateUnitOfWork(IDataContext context)
-        {
-            return new NhUnitOfWork(context as NhDataContext);
-        }
     }
 }

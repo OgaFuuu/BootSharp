@@ -15,6 +15,12 @@ namespace BootSharp.Data.Interfaces
         void SaveChanges();
 
         /// <summary>
+        /// Creates a new <see cref="IUnitOfWork"/> used in conjonction with this data context.
+        /// </summary>
+        /// <returns></returns>
+        IUnitOfWork CreateUnitOfWork();
+
+        /// <summary>
         /// Sql query the database.
         /// </summary>
         IList<T> Query<T>(string sql, params object[] parameters);

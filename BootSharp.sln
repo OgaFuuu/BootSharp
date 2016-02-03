@@ -41,6 +41,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootSharp.Tests.Data.NHiber
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootSharp.Tests.Data", "BootSharp.Tests.Data\BootSharp.Tests.Data.csproj", "{1EFD43B4-54D6-45BA-8FAB-5EEE77DB10C0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Extensions", "Extensions", "{1E82AC27-5FAB-4EA2-BED1-8E9CB527700A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataImport", "DataImport", "{1F0804B4-A0EC-430E-8717-B9DBD5B0D646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootSharp.Tests.DataImport", "BootSharp.Tests.DataImport\BootSharp.Tests.DataImport.csproj", "{B10A5211-0C95-43E2-8620-7B610AAB704F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B3887900-6160-4AC0-B7B2-B6E96103B634}"
+	ProjectSection(SolutionItems) = preProject
+		B_Sharp_logo.ico = B_Sharp_logo.ico
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +102,10 @@ Global
 		{1EFD43B4-54D6-45BA-8FAB-5EEE77DB10C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1EFD43B4-54D6-45BA-8FAB-5EEE77DB10C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1EFD43B4-54D6-45BA-8FAB-5EEE77DB10C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B10A5211-0C95-43E2-8620-7B610AAB704F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B10A5211-0C95-43E2-8620-7B610AAB704F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B10A5211-0C95-43E2-8620-7B610AAB704F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B10A5211-0C95-43E2-8620-7B610AAB704F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,5 +125,8 @@ Global
 		{8E81BA7E-248A-461F-B80B-CADF00E74BE2} = {EA7E184D-AC70-40E2-A203-AB8067160772}
 		{24C29AB5-767B-455C-A053-332E104A93D5} = {EA7E184D-AC70-40E2-A203-AB8067160772}
 		{1EFD43B4-54D6-45BA-8FAB-5EEE77DB10C0} = {EA7E184D-AC70-40E2-A203-AB8067160772}
+		{1E82AC27-5FAB-4EA2-BED1-8E9CB527700A} = {D2F0E031-FF17-4E95-9614-3411CBCC09EA}
+		{1F0804B4-A0EC-430E-8717-B9DBD5B0D646} = {1E82AC27-5FAB-4EA2-BED1-8E9CB527700A}
+		{B10A5211-0C95-43E2-8620-7B610AAB704F} = {1F0804B4-A0EC-430E-8717-B9DBD5B0D646}
 	EndGlobalSection
 EndGlobal
