@@ -16,8 +16,10 @@ namespace BootSharp.Tests.Data.EntityFramework.Mappings
         protected override void MapForeignKeys()
         {
             // B has one A and A has many B.
-            HasRequired(b => b.A).WithMany(a => a.BCollection);
-            
+            // EF: HasRequired(b => b.A).WithMany(a => a.BCollection);
+            // BS: OneToMany(b => b.A, a => a.BCollection);
+            OneToMany(b => b.A, a => a.BCollection);
+
             base.MapForeignKeys();
         }
     }

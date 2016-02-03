@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataIdentifierBase.cs" />
+    <Compile Include="DataMapBase.cs" />
     <Compile Include="DataObjectBase.cs" />
     <Compile Include="DataReadOnlyRepository.cs" />
     <Compile Include="DataRepositoryBase.cs" />

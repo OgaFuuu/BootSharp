@@ -50,11 +50,41 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Models\Author.cs" />
+    <Compile Include="Models\Book.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\Publisher.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\init_source_script.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BootSharp.Data.EntityFramework\BootSharp.Data.EntityFramework.csproj">
+      <Project>{6282b113-3c1b-43c1-8417-a4b54ddeeda9}</Project>
+      <Name>BootSharp.Data.EntityFramework</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BootSharp.Data.Interfaces\BootSharp.Data.Interfaces.csproj">
+      <Project>{0ef74a1c-7e37-46b7-9723-0bd5664f20e4}</Project>
+      <Name>BootSharp.Data.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BootSharp.Data.NHibernate\BootSharp.Data.NHibernate.csproj">
+      <Project>{7e40e200-6eea-4ab2-a3e5-353d33489025}</Project>
+      <Name>BootSharp.Data.NHibernate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BootSharp.DataImport.Interfaces\BootSharp.DataImport.Interfaces.csproj">
+      <Project>{b261e423-a71c-4b2e-aa8d-48f9e5c8b036}</Project>
+      <Name>BootSharp.DataImport.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BootSharp.DataImport\BootSharp.DataImport.csproj">
+      <Project>{b098c01b-005f-4987-8fed-52e54fa9514c}</Project>
+      <Name>BootSharp.DataImport</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BootSharp.Data\BootSharp.Data.csproj">
+      <Project>{02feadbb-cbd9-491c-a3e8-96add9d7c6f5}</Project>
+      <Name>BootSharp.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

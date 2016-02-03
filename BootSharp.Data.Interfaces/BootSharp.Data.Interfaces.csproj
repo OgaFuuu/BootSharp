@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="IDataContext.cs" />
     <Compile Include="IDataIdentifier.cs" />
+    <Compile Include="IDataMap.cs" />
     <Compile Include="IDataMapper.cs" />
     <Compile Include="IDataObject.cs" />
     <Compile Include="IDataReadOnlyRepository.cs" />

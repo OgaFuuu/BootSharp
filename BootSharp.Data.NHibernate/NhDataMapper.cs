@@ -1,5 +1,8 @@
 ﻿using BootSharp.Data.Interfaces;
 using FluentNHibernate.Mapping;
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace BootSharp.Data.NHibernate
 {
@@ -61,9 +64,43 @@ namespace BootSharp.Data.NHibernate
 
         #endregion
 
-        #region IDataMapper implementation
+        #region HasOne Helpers
 
-        // TODO
+        public void OneToZero<TTarget>(Expression<Func<T, TTarget>> navigationProperty, bool isNullable = false, IDataMap map = null)
+            where TTarget : class, IDataObject
+        {
+            if (isNullable)
+            {
+                var relationship = References(navigationProperty).Nullable();
+                if (map != null && map.KeysColumnNames != null)
+                {
+                    relationship.Columns(map.KeysColumnNames);
+                }
+            }
+            else
+            {
+                var relationship = References(navigationProperty).Not.Nullable();
+                if (map != null && map.KeysColumnNames != null)
+                {
+                    relationship.Columns(map.KeysColumnNames);
+                }
+            }
+        }
+        public void OneToOne<TTarget>(Expression<Func<T, TTarget>> navigationProperty, Expression<Func<TTarget, T>> inverseProperty, bool isNullable = false, IDataMap map = null)
+             where TTarget : class, IDataObject
+        {
+            OneToZero(navigationProperty, isNullable, map);
+        }
+        public void OneToMany<TTarget>(Expression<Func<T, TTarget>> navigationProperty, Expression<Func<TTarget, ICollection<T>>> withManyProperty, bool isNullable = false, IDataMap map = null)
+             where TTarget : class, IDataObject
+        {
+            OneToZero(navigationProperty, isNullable, map);
+        }
+        public void OneToMany<TTarget, TKey>(Expression<Func<T, TTarget>> navigationProperty, Expression<Func<TTarget, ICollection<T>>> withManyProperty, bool isNullable = false, Expression<Func<T, TKey>> foreignKeyProperty = null)
+             where TTarget : class, IDataObject
+        {
+            throw new NotImplementedException();
+        }
 
         #endregion
     }
