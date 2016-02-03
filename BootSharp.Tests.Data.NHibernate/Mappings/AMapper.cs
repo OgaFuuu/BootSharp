@@ -17,13 +17,14 @@ namespace BootSharp.Tests.Data.NHibernate.Mappings
         {
             // A has many B and B has one A
             HasMany(a => a.BCollection)
-                .LazyLoad();
+                .Table("B")
+                .KeyColumn("A_Id");
 
             // A has many C and C has many A, using join table AC
             HasManyToMany(a => a.CCollection)
-                .LazyLoad()
-                .Cascade.All()
-                .Table("AC");
+                .Table("AC")
+                .ParentKeyColumn("A_Id")
+                .ChildKeyColumn("C_Id");
 
             base.MapForeignKeys();
         }

@@ -1,24 +1,15 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using BootSharp.Data.Interfaces;
+using System.Collections.Generic;
 
 namespace BootSharp.Tests.Data
 {
     [TestClass]
     public abstract class DataTest
     {
-        protected IDataContext Context { get; private set; }
-        protected IUnitOfWork UnitOfWork { get; private set; }
-
         [TestInitialize]
         public void Initialize()
         {
-            Context = CreateContext();
-            Assert.IsNotNull(Context);
-
-            UnitOfWork = CreateUnitOfWork();
-            Assert.IsNotNull(UnitOfWork);
-
             // Clear datas before starting
             ClearData();
         }
@@ -26,17 +17,149 @@ namespace BootSharp.Tests.Data
         [TestCleanup]
         public void Cleanup()
         {
-            if (UnitOfWork != null)
+        }
+
+        [TestMethod]
+        protected void DataContextCanInstantiate()
+        {
+            using (var context = CreateContext())
             {
-                UnitOfWork.Dispose();
-                UnitOfWork = null;
+                Assert.IsNotNull(context);
+            }
+        }
+
+        [TestMethod]
+        protected void UnitOfWorkPersistencyIsCorrect()
+        {
+            #region SAVE A
+
+            long aId = 0;
+            using (var context = CreateContext())
+            {
+                Assert.IsNotNull(context);
+
+                using (var unitOfWork = CreateUnitOfWork(context))
+                {
+                    Assert.IsNotNull(unitOfWork);
+
+                    var a = new A { Name = "a test" };
+                    var aRepo = unitOfWork.GetRepository<A>();
+                    aRepo.Create(a);
+                    unitOfWork.Save();
+
+                    aId = a.Id;
+                }
+            }
+            Assert.IsTrue(aId > 0);
+
+            #endregion
+
+            #region SAVE B REFERENCING A
+
+            long bId = 0;
+            using (var context = CreateContext())
+            {
+                Assert.IsNotNull(context);
+
+                using (var unitOfWork = CreateUnitOfWork(context))
+                {
+                    Assert.IsNotNull(unitOfWork);
+
+                    var aRepo = unitOfWork.GetRepository<A>();
+                    var a = aRepo.Read(aId);
+                    Assert.IsNotNull(a);
+
+                    var b = new B { Name = "b test", A = a };
+                    var bRepo = unitOfWork.GetRepository<B>();
+                    bRepo.Create(b);
+                    unitOfWork.Save();
+
+                    bId = b.Id;
+                }
+            }
+            Assert.IsTrue(bId > 0);
+
+            #endregion
+
+            #region RELOAD AND CHECK CROSS REFS
+
+            using (var context = CreateContext())
+            {
+                Assert.IsNotNull(context);
+
+                using (var unitOfWork = CreateUnitOfWork(context))
+                {
+                    Assert.IsNotNull(unitOfWork);
+
+                    var aRepo = unitOfWork.GetRepository<A>();
+                    var bRepo = unitOfWork.GetRepository<B>();
+                    var a = aRepo.Read(aId);
+                    var b = bRepo.Read(bId);
+
+                    Assert.IsNotNull(a);
+                    Assert.IsNotNull(b);
+                    Assert.IsTrue(a.BCollection.Contains(b));
+                    Assert.IsTrue(b.A == a);
+                }
             }
 
-            if (Context != null)
+            #endregion
+
+            #region SAVE C REFERENCING A
+
+            long cId = 0;
+            using (var context = CreateContext())
             {
-                Context.Dispose();
-                Context = null;
+                Assert.IsNotNull(context);
+
+                using (var unitOfWork = CreateUnitOfWork(context))
+                {
+                    Assert.IsNotNull(unitOfWork);
+
+                    var aRepo = unitOfWork.GetRepository<A>();
+                    var a = aRepo.Read(aId);
+                    Assert.IsNotNull(a);
+
+                    var c = new C { Name = "c test" };
+                    if (c.ACollection == null)
+                        c.ACollection = new List<A>();
+
+                    c.ACollection.Add(a);
+                    var cRepo = unitOfWork.GetRepository<C>();
+                    cRepo.Create(c);
+                    unitOfWork.Save();
+
+                    cId = c.Id;
+                }
             }
+            Assert.IsTrue(cId > 0);
+
+            #endregion
+
+            #region RELOAD AND CHECK CROSS REFS
+
+            using (var context = CreateContext())
+            {
+                Assert.IsNotNull(context);
+
+                using (var unitOfWork = CreateUnitOfWork(context))
+                {
+                    Assert.IsNotNull(unitOfWork);
+
+                    var aRepo = unitOfWork.GetRepository<A>();
+                    var a = aRepo.Read(aId);
+                    Assert.IsNotNull(a);
+
+                    var cRepo = unitOfWork.GetRepository<C>();
+                    var c = cRepo.Read(cId);
+                    Assert.IsNotNull(c);
+
+                    Assert.IsTrue(c.ACollection.Contains(a));
+                    Assert.IsTrue(a.CCollection.Contains(c));
+                }
+            }
+
+            #endregion
         }
 
         /// <summary>
@@ -47,30 +170,40 @@ namespace BootSharp.Tests.Data
         /// <summary>
         /// Child must return the unit of work at the end of this method.
         /// </summary>
-        protected abstract IUnitOfWork CreateUnitOfWork();
+        protected abstract IUnitOfWork CreateUnitOfWork(IDataContext dataContext);
 
         /// <summary>
         /// Clear all the datas in table for <see cref="A"/>, <see cref="B"/> and <see cref="C"/>.
         /// </summary>
         protected void ClearData()
         {
-            var repoB = UnitOfWork.GetRepository<B>();
-            var listB = repoB.Read();
-            repoB.Delete(listB);
-            UnitOfWork.Save();
+            using (var context = CreateContext())
+            {
+                using (var unitOfWork = CreateUnitOfWork(context))
+                {
+                    // DELETE B
+                    var repoB = unitOfWork.GetRepository<B>();
+                    var listB = repoB.Read();
+                    repoB.Delete(listB);
+                    unitOfWork.Save();
 
-            Context.Command("TRUNCATE TABLE AC");
-            UnitOfWork.Save();
+                    // DELETE AC
+                    context.Command("TRUNCATE TABLE AC");
+                    unitOfWork.Save();
 
-            var repoC = UnitOfWork.GetRepository<C>();
-            var listC = repoC.Read();
-            repoC.Delete(listC);
-            UnitOfWork.Save();
+                    // DELETE C
+                    var repoC = unitOfWork.GetRepository<C>();
+                    var listC = repoC.Read();
+                    repoC.Delete(listC);
+                    unitOfWork.Save();
 
-            var repoA = UnitOfWork.GetRepository<A>();
-            var listA = repoA.Read();
-            repoA.Delete(listA);
-            UnitOfWork.Save();
+                    // DELETE A
+                    var repoA = unitOfWork.GetRepository<A>();
+                    var listA = repoA.Read();
+                    repoA.Delete(listA);
+                    unitOfWork.Save();
+                }
+            }                
         }
     }
 }

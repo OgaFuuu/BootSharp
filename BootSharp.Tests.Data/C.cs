@@ -7,6 +7,6 @@ namespace BootSharp.Tests.Data
     {
         public virtual string Name { get; set; }
 
-        public virtual ICollection<A> ACollection { get; set; }
+        public virtual IList<A> ACollection { get; set; }
     }
 }

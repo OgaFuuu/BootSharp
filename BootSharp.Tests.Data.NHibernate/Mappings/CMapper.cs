@@ -17,9 +17,9 @@ namespace BootSharp.Tests.Data.NHibernate.Mappings
         {
             // C has many A and A has many C, using join table AC
             HasManyToMany(c => c.ACollection)
-                .LazyLoad()
-                .Cascade.All()
-                .Table("AC");
+                .Table("AC")
+                .ParentKeyColumn("C_Id")
+                .ChildKeyColumn("A_Id");
 
             base.MapForeignKeys();
         }
