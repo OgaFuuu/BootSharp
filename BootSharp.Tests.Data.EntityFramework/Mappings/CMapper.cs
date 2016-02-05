@@ -1,4 +1,5 @@
-﻿using BootSharp.Data.EntityFramework;
+﻿using BootSharp.Data;
+using BootSharp.Data.EntityFramework;
 
 namespace BootSharp.Tests.Data.EntityFramework.Mappings
 {
@@ -16,12 +17,9 @@ namespace BootSharp.Tests.Data.EntityFramework.Mappings
         protected override void MapForeignKeys()
         {
             // C has many A and A has many C, using join table AC
-            HasMany(c => c.ACollection)
-                .WithMany(a => a.CCollection)
-                .Map(m =>
-                {
-                    m.ToTable("AC");
-                });
+            // EF: HasMany(c => c.ACollection).WithMany(a => a.CCollection).Map(m =>{ m.ToTable("AC"); });
+            // BS: ManyToMany(c => c.ACollection, a => a.CCollection, new DataMapBase("AC"));
+            ManyToMany(c => c.ACollection, a => a.CCollection, new DataMapBase("AC"));
             
             base.MapForeignKeys();
         }

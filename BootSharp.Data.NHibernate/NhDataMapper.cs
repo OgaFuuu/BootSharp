@@ -1,7 +1,9 @@
 ﻿using BootSharp.Data.Interfaces;
 using FluentNHibernate.Mapping;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace BootSharp.Data.NHibernate
@@ -100,6 +102,41 @@ namespace BootSharp.Data.NHibernate
              where TTarget : class, IDataObject
         {
             throw new NotImplementedException();
+        }
+
+        #endregion
+
+        #region ManyToX Helpers
+
+        public void ManyToOne<TTarget>(Expression<Func<T, IEnumerable<TTarget>>> navigationProperty, Expression<Func<TTarget, T>> inverseProperty, bool inverseIsNullable = false, IDataMap map = null)
+            where TTarget : class, IDataObject
+        {
+            var relationship = HasMany(navigationProperty);
+            if(map != null)
+            {
+                if (!string.IsNullOrEmpty(map.TableName))
+                    relationship.Table(map.TableName);
+
+                if (map.KeysColumnNames != null)
+                    relationship.KeyColumns.Add(map.KeysColumnNames);
+            }
+
+        }
+        public void ManyToMany<TTarget>(Expression<Func<T, IEnumerable<TTarget>>> navigationProperty, Expression<Func<TTarget, IEnumerable<T>>> inverseProperty, IDataMap map = null)
+            where TTarget : class, IDataObject
+        {
+            var relationship = HasManyToMany(navigationProperty);
+            if (map != null)
+            {
+                if (!string.IsNullOrEmpty(map.TableName))
+                    relationship.Table(map.TableName);
+
+                if (map.KeysColumnNames != null)
+                    relationship.ParentKeyColumns.Add(map.KeysColumnNames);
+
+                if (map.InverseKeysColumnNames != null)
+                    relationship.ChildKeyColumns.Add(map.InverseKeysColumnNames);
+            }
         }
 
         #endregion

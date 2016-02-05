@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
+using System.Data.Entity.ModelConfiguration.Configuration;
 using System.Linq.Expressions;
 
 namespace BootSharp.Data.EntityFramework
@@ -54,7 +55,7 @@ namespace BootSharp.Data.EntityFramework
 
         #endregion
 
-        #region HasOne Helpers
+        #region OneToX Helpers
         
         public void OneToZero<TTarget>(Expression<Func<T, TTarget>> navigationProperty, bool isNullable = false, IDataMap map = null) 
             where TTarget : class, IDataObject
@@ -159,5 +160,54 @@ namespace BootSharp.Data.EntityFramework
 
         #endregion
 
+        #region ManyToX Helpers
+
+        public void ManyToOne<TTarget>(Expression<Func<T, ICollection<TTarget>>> navigationProperty, Expression<Func<TTarget, T>> inverseProperty, bool inverseIsNullable = false, IDataMap map = null)
+            where TTarget : class, IDataObject
+        {
+            DependentNavigationPropertyConfiguration<TTarget> relationship = null;
+            if(inverseIsNullable)
+            {
+                relationship = HasMany(navigationProperty).WithOptional(inverseProperty); //TODO take withOptionnal into account
+            }
+            else
+            {
+                relationship = HasMany(navigationProperty).WithRequired(inverseProperty); //TODO take withOptionnal into account
+            }
+            
+            if (map != null)
+            {
+                relationship.Map(m =>
+                {
+                    if (!string.IsNullOrEmpty(map.TableName))
+                        m.ToTable(map.TableName);
+
+                    if (map.KeysColumnNames != null)
+                        m.MapKey(map.KeysColumnNames);
+                });
+            }
+        }
+        public void ManyToMany<TTarget>(Expression<Func<T, ICollection<TTarget>>> navigationProperty, Expression<Func<TTarget, ICollection<T>>> inverseProperty, IDataMap map = null)
+            where TTarget : class, IDataObject
+        {
+            var relationship = HasMany(navigationProperty).WithMany(inverseProperty);
+
+            if (map != null)
+            {
+                relationship.Map(m =>
+                    {
+                        if(!string.IsNullOrEmpty(map.TableName))
+                            m.ToTable(map.TableName);
+
+                        if (map.KeysColumnNames != null)
+                            m.MapLeftKey(map.KeysColumnNames);
+
+                        if (map.InverseKeysColumnNames != null)
+                            m.MapRightKey(map.InverseKeysColumnNames);
+                    });
+            }
+        }
+
+        #endregion
     }
 }

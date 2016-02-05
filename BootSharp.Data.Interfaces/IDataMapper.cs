@@ -22,7 +22,7 @@ namespace BootSharp.Data.Interfaces
     public interface IDataMapper<T> : IDataMapper
         where T : IDataObject
     {
-        #region HasOne Helpers
+        #region OneToX Helpers
 
         /// <summary>
         /// Maps a one-to-zero relationship.
@@ -64,5 +64,6 @@ namespace BootSharp.Data.Interfaces
              where TTarget : class, IDataObject;
 
         #endregion
+
     }
 }
