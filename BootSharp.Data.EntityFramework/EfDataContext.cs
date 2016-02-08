@@ -30,6 +30,11 @@ namespace BootSharp.Data.EntityFramework
             base.SaveChanges();
         }
 
+        public IUnitOfWork CreateUnitOfWork()
+        {
+            return new EfUnitOfWork(this);
+        }
+
         public IList<T> Query<T>(string sql, params object[] parameters)
         {
             var listTask = QueryAsync<T>(sql, parameters);

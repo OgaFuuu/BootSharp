@@ -23,9 +23,5 @@ namespace BootSharp.Tests.Data.EntityFramework
         {
             return new EfDataContextTest();
         }
-        protected override IUnitOfWork CreateUnitOfWork(IDataContext context)
-        {
-            return new EfUnitOfWork(context as EfDataContext);
-        }
     }
 }

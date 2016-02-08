@@ -1,4 +1,5 @@
-﻿using BootSharp.Data.NHibernate;
+﻿using BootSharp.Data;
+using BootSharp.Data.NHibernate;
 
 namespace BootSharp.Tests.Data.NHibernate.Mappings
 {
@@ -16,9 +17,9 @@ namespace BootSharp.Tests.Data.NHibernate.Mappings
         protected override void MapForeignKeys()
         {
             // B has one A and A has many B
-            References(b => b.A)
-                .Column("A_Id")
-                .Not.Nullable();
+            // NH: References(b => b.A).Column("A_Id").Not.Nullable();
+            // BS: OneToMany(b => b.A, a => a.BCollection, false, new DataMapBase(null, "A_Id"));
+            OneToMany(b => b.A, a => a.BCollection, false, new DataMapBase(null, "A_Id"));
 
             base.MapForeignKeys();
         }

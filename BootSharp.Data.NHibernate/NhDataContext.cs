@@ -25,6 +25,11 @@ namespace BootSharp.Data.NHibernate
             Session.Flush();
         }
 
+        public IUnitOfWork CreateUnitOfWork()
+        {
+            return new NhUnitOfWork(this);
+        }
+
         public IList<T> Query<T>(string sql, params object[] parameters)
         {
             var listTask = QueryAsync<T>(sql, parameters);

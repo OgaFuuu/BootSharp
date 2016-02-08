@@ -29,6 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>B_Sharp_logo.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -42,12 +45,16 @@
   <ItemGroup>
     <Compile Include="IDataContext.cs" />
     <Compile Include="IDataIdentifier.cs" />
+    <Compile Include="IDataMap.cs" />
     <Compile Include="IDataMapper.cs" />
     <Compile Include="IDataObject.cs" />
     <Compile Include="IDataReadOnlyRepository.cs" />
     <Compile Include="IDataRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="B_Sharp_logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
