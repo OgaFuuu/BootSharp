@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("BootSharp.DataImport.Gui")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("OgaFuuu")]
 [assembly: AssemblyProduct("BootSharp.DataImport.Gui")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCopyright("Copyright © OgaFuuu 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

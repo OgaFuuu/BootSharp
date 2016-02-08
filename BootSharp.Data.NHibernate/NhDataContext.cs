@@ -1,5 +1,6 @@
 ﻿using BootSharp.Data.Interfaces;
 using FluentNHibernate.Automapping;
+using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using System.Collections.Generic;
@@ -9,11 +10,21 @@ namespace BootSharp.Data.NHibernate
 {
     public abstract class NhDataContext : IDataContext
     {
-        internal readonly ISession Session;
+        internal ISession Session { get; private set; }
 
         public NhDataContext(IPersistenceConfigurer dbPersister, IInterceptor sessionLocalInterceptor = null, AutoPersistenceModel autoPersistanceModel = null)
         {
             var factory = NhHelper.GetSessionFactory(this, dbPersister, autoPersistanceModel);
+            ConfigureSession(factory);
+        }
+        public NhDataContext(FluentConfiguration factoryConfig, IInterceptor sessionLocalInterceptor = null, AutoPersistenceModel autoPersistanceModel = null)
+        {
+            var factory = NhHelper.GetSessionFactory(this, factoryConfig, autoPersistanceModel);
+            ConfigureSession(factory);
+        }
+
+        private void ConfigureSession(ISessionFactory factory, IInterceptor sessionLocalInterceptor = null)
+        {
             Session = sessionLocalInterceptor != null ? factory.OpenSession(sessionLocalInterceptor) : factory.OpenSession();
 
             // Data Context IS transactionnal so...

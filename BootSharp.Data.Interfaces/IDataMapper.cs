@@ -64,6 +64,5 @@ namespace BootSharp.Data.Interfaces
              where TTarget : class, IDataObject;
 
         #endregion
-
     }
 }
