@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 [assembly: AssemblyTitle("BootSharp.Data.Interfaces")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("BootSharp Data interfaces.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Aurélien Matron")]
+[assembly: AssemblyCompany("OgaFuuu")]
 [assembly: AssemblyProduct("BootSharp.Data.Interfaces")]
-[assembly: AssemblyCopyright("Copyright © Aurélien Matron 2016")]
+[assembly: AssemblyCopyright("Copyright © OgaFuuu 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
