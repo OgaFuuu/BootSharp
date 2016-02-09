@@ -21,7 +21,7 @@ namespace BootSharp.DataImport
                 fail = true;
             }
 
-            return fail;
+            return !fail;
         }
 
         public static IDictionary<IDataImportJob, IDataImportResult> Run(IDataImport dataImport)

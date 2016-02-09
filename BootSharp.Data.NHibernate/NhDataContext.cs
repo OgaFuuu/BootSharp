@@ -10,22 +10,31 @@ namespace BootSharp.Data.NHibernate
 {
     public abstract class NhDataContext : IDataContext
     {
+        private IInterceptor _localInterceptor { get; set; }
+        private AutoPersistenceModel _autoPersistanceModel { get; set; }
+
+        internal ISessionFactory Factory { get; private set; }
         internal ISession Session { get; private set; }
 
-        public NhDataContext(IPersistenceConfigurer dbPersister, IInterceptor sessionLocalInterceptor = null, AutoPersistenceModel autoPersistanceModel = null)
+        private NhDataContext(IInterceptor sessionLocalInterceptor, AutoPersistenceModel autoPersistanceModel = null)
         {
-            var factory = NhHelper.GetSessionFactory(this, dbPersister, autoPersistanceModel);
-            ConfigureSession(factory);
+            _localInterceptor = sessionLocalInterceptor;
+            _autoPersistanceModel = autoPersistanceModel;
         }
-        public NhDataContext(FluentConfiguration factoryConfig, IInterceptor sessionLocalInterceptor = null, AutoPersistenceModel autoPersistanceModel = null)
+        public NhDataContext(IPersistenceConfigurer dbPersister, IInterceptor sessionLocalInterceptor = null, AutoPersistenceModel autoPersistanceModel = null) : this(sessionLocalInterceptor, autoPersistanceModel)
         {
-            var factory = NhHelper.GetSessionFactory(this, factoryConfig, autoPersistanceModel);
-            ConfigureSession(factory);
+            Factory = NhHelper.GetSessionFactory(this, dbPersister, _autoPersistanceModel);
+            ConfigureSession();
+        }
+        public NhDataContext(FluentConfiguration factoryConfig, IInterceptor sessionLocalInterceptor = null, AutoPersistenceModel autoPersistanceModel = null) : this(sessionLocalInterceptor, autoPersistanceModel)
+        {
+            Factory = NhHelper.GetSessionFactory(this, factoryConfig, _autoPersistanceModel);
+            ConfigureSession();
         }
 
-        private void ConfigureSession(ISessionFactory factory, IInterceptor sessionLocalInterceptor = null)
+        internal void ConfigureSession()
         {
-            Session = sessionLocalInterceptor != null ? factory.OpenSession(sessionLocalInterceptor) : factory.OpenSession();
+            Session = _localInterceptor != null ? Factory.OpenSession(_localInterceptor) : Factory.OpenSession();
 
             // Data Context IS transactionnal so...
             Session.BeginTransaction();

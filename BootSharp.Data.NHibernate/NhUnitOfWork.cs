@@ -13,6 +13,10 @@ namespace BootSharp.Data.NHibernate
         public NhUnitOfWork(NhDataContext nhContext) : base(nhContext)
         {
             _nhContext = nhContext;
+
+            if (_nhContext.Session == null || !_nhContext.Session.IsOpen)
+                _nhContext.ConfigureSession();
+
             _transaction = _nhContext.Session.BeginTransaction();
         }
 

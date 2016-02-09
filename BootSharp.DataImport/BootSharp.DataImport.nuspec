@@ -11,8 +11,8 @@
     <iconUrl>https://raw.githubusercontent.com/OgaFuuu/BootSharp/dev/B_Sharp_logo.ico</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Fixing IUnitOfWork dispose.</releaseNotes>
+    <releaseNotes>Initial Release.</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>DATA ORM MAPPING</tags>
+    <tags>DATA ORM MAPPING IMPORT EXPORT</tags>
   </metadata>
 </package>
