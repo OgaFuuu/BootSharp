@@ -34,10 +34,6 @@ namespace BootSharp.Data
 
         public virtual void Dispose()
         {
-            if (_dataContext != null)
-            {
-                _dataContext.Dispose();
-            }
         }
     }
 }
