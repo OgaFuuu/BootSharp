@@ -2,7 +2,7 @@
 Starter Kit for ORM and Data operations with .NET and libs.
 
 # Get Started
-See the <a href="https://github.com/OgaFuuu/BootSharp/wiki/getstarted">Get Started</a> article to quickly handles BootSharp principles !
+See the <a href="https://github.com/OgaFuuu/BootSharp/wiki/Get-Started">Get Started</a> article to quickly handles BootSharp principles !
 
 # NuGet
 Packages are now available:
