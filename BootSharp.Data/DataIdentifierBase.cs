@@ -1,4 +1,5 @@
 ﻿using BootSharp.Data.Interfaces;
+using System;
 
 namespace BootSharp.Data
 {
@@ -8,5 +9,8 @@ namespace BootSharp.Data
         public virtual TIdentifier IdentifierType { get; set; }
         public virtual TEntity Source { get; set; }
         public virtual string Value { get; set; }
+
+        public virtual DateTime? Start { get; set; }
+        public virtual DateTime? End { get; set; }
     }
 }
