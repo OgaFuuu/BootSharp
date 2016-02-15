@@ -11,7 +11,7 @@
     <iconUrl>https://raw.githubusercontent.com/OgaFuuu/BootSharp/dev/B_Sharp_logo.ico</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Fixing IUnitOfWork dispose.</releaseNotes>
+    <releaseNotes>Added DateTime? support for native identifier.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>DATA ORM MAPPING</tags>
   </metadata>

@@ -1,4 +1,6 @@
-﻿namespace BootSharp.Data.Interfaces
+﻿using System;
+
+namespace BootSharp.Data.Interfaces
 {
     /// <summary>
     /// Special object used as an external Id.
@@ -17,5 +19,15 @@
         TIdentifier IdentifierType { get; set; }
 
         string Value { get; set; }
+
+        /// <summary>
+        /// Eventually set a start time for this Identifier
+        /// </summary>
+        DateTime? Start { get; set; }
+
+        /// <summary>
+        /// Eventually set an end time for this identifier
+        /// </summary>
+        DateTime? End { get; set; }
     }
 }
