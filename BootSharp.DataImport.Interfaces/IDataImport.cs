@@ -1,4 +1,5 @@
 ﻿using BootSharp.Data.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace BootSharp.DataImport.Interfaces
@@ -9,14 +10,14 @@ namespace BootSharp.DataImport.Interfaces
     public interface IDataImport
     {
         /// <summary>
-        /// Source context.
+        /// Source context builder.
         /// </summary>
-        IDataContext SourceContext { get; }
+        Func<IDataContext> SourceContextBuilder { get; }
 
         /// <summary>
-        /// Destination context.
+        /// Destination context builder.
         /// </summary>
-        IDataContext DestinationContext { get; }
+        Func<IDataContext> DestinationContextBuilder { get; }
 
         /// <summary>
         /// Ordered list of Job played by the importer.

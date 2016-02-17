@@ -2,19 +2,20 @@
 using BootSharp.Data.Interfaces;
 using BootSharp.DataImport.Interfaces;
 using System.Linq;
+using System;
 
 namespace BootSharp.DataImport
 {
     public class DataImportBase : IDataImport
     {
-        public IDataContext SourceContext { get; private set; }
-        public IDataContext DestinationContext { get; private set; }
+        public Func<IDataContext> SourceContextBuilder { get; private set; }
+        public Func<IDataContext> DestinationContextBuilder { get; private set; }
         public IReadOnlyList<IDataImportJob> Jobs { get; private set; }
 
-        public DataImportBase(IDataContext sourceContext, IDataContext destinationContext, IEnumerable<IDataImportJob> jobs)
+        public DataImportBase(Func<IDataContext> sourceContextBuilder, Func<IDataContext> destinationContextBuilder, IEnumerable<IDataImportJob> jobs)
         {
-            SourceContext = sourceContext;
-            DestinationContext = destinationContext;
+            SourceContextBuilder = sourceContextBuilder;
+            DestinationContextBuilder = destinationContextBuilder;
             Jobs = jobs.ToList();
         }
 
@@ -24,7 +25,7 @@ namespace BootSharp.DataImport
             
             foreach(var job in Jobs)
             {
-                var result = job.CanRun(SourceContext, DestinationContext);
+                var result = job.CanRun(SourceContextBuilder, DestinationContextBuilder);
                 results.Add(job, result);
             }
 
@@ -36,7 +37,7 @@ namespace BootSharp.DataImport
 
             foreach (var job in Jobs)
             {
-                var result = job.Run(SourceContext, DestinationContext);
+                var result = job.Run(SourceContextBuilder, DestinationContextBuilder);
                 results.Add(job, result);
             }
 

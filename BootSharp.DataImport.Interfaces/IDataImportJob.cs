@@ -1,4 +1,5 @@
 ﻿using BootSharp.Data.Interfaces;
+using System;
 
 namespace BootSharp.DataImport.Interfaces
 {
@@ -11,12 +12,12 @@ namespace BootSharp.DataImport.Interfaces
         /// Check that the job can run.
         /// </summary>
         /// <returns></returns>
-        IDataImportResult CanRun(IDataContext sourceContext, IDataContext destinationContext);
+        IDataImportResult CanRun(Func<IDataContext> sourceContextBuilder, Func<IDataContext> destinationContextBuilder);
 
         /// <summary>
         /// Run the job.
         /// </summary>
         /// <returns></returns>
-        IDataImportResult Run(IDataContext sourceContext, IDataContext destinationContext);
+        IDataImportResult Run(Func<IDataContext> sourceContextBuilder, Func<IDataContext> destinationContextBuilder);
     }
 }

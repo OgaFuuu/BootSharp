@@ -60,25 +60,31 @@ namespace BootSharp.DataImport
             if (dataImport == null)
                 throw new DataImportException(dataImport, "The importer can't be null", new ArgumentNullException(nameof(dataImport)));
 
-            if (dataImport.SourceContext == null)
+            if (dataImport.SourceContextBuilder == null)
                 throw new DataImportException(dataImport, "SourceContext can't be null.");
 
-            if (dataImport.DestinationContext == null)
+            if (dataImport.DestinationContextBuilder == null)
                 throw new DataImportException(dataImport, "DestinationContext can't be null.");
 
-            using (var sourceUow = dataImport.SourceContext.CreateUnitOfWork())
+            using (var sourceContext = dataImport.SourceContextBuilder.Invoke())
             {
-                if (sourceUow == null)
+                using (var sourceUow = sourceContext.CreateUnitOfWork())
                 {
-                    throw new DataImportException(dataImport, "Unable to create an IUnitOfWork from SourceContext.");
+                    if (sourceUow == null)
+                    {
+                        throw new DataImportException(dataImport, "Unable to create an IUnitOfWork from SourceContext.");
+                    }
                 }
             }
 
-            using (var destUow = dataImport.DestinationContext.CreateUnitOfWork())
+            using (var destinationContext = dataImport.DestinationContextBuilder.Invoke())
             {
-                if (destUow == null)
+                using (var destUow = destinationContext.CreateUnitOfWork())
                 {
-                    throw new DataImportException(dataImport, "Unable to create an IUnitOfWork from DestinationContext.");
+                    if (destUow == null)
+                    {
+                        throw new DataImportException(dataImport, "Unable to create an IUnitOfWork from DestinationContext.");
+                    }
                 }
             }
         }
