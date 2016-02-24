@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2A0794B0-55A0-4054-B894-8292872FA264}</ProjectGuid>
+    <ProjectGuid>{B87823FA-F6CA-4DED-820E-EEE931EDFDAA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BootSharp.Business.Interfaces</RootNamespace>
-    <AssemblyName>BootSharp.Business.Interfaces</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <RootNamespace>BootSharp.Business</RootNamespace>
+    <AssemblyName>BootSharp.Business</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,9 +29,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>B_Sharp_logo.ico</ApplicationIcon>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,19 +40,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\ICanRunResult.cs" />
-    <Compile Include="Commands\ICommand.cs" />
-    <Compile Include="IDataService.cs" />
-    <Compile Include="IService.cs" />
+    <Compile Include="Commands\CanRunResult.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="DataServiceBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceBase.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="B_Sharp_logo.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BootSharp.Business.Interfaces.nuspec" />
+    <None Include="BootSharp.Business.nuspec" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BootSharp.Business.Interfaces\BootSharp.Business.Interfaces.csproj">
+      <Project>{2a0794b0-55a0-4054-b894-8292872fa264}</Project>
+      <Name>BootSharp.Business.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BootSharp.Data.Interfaces\BootSharp.Data.Interfaces.csproj">
       <Project>{0ef74a1c-7e37-46b7-9723-0bd5664f20e4}</Project>
       <Name>BootSharp.Data.Interfaces</Name>

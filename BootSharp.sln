@@ -52,6 +52,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{B38879
 		B_Sharp_logo.ico = B_Sharp_logo.ico
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BootSharp.Business", "BootSharp.Business\BootSharp.Business.csproj", "{B87823FA-F6CA-4DED-820E-EEE931EDFDAA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -106,6 +108,10 @@ Global
 		{B10A5211-0C95-43E2-8620-7B610AAB704F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B10A5211-0C95-43E2-8620-7B610AAB704F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B10A5211-0C95-43E2-8620-7B610AAB704F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B87823FA-F6CA-4DED-820E-EEE931EDFDAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B87823FA-F6CA-4DED-820E-EEE931EDFDAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B87823FA-F6CA-4DED-820E-EEE931EDFDAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B87823FA-F6CA-4DED-820E-EEE931EDFDAA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,5 +134,6 @@ Global
 		{1E82AC27-5FAB-4EA2-BED1-8E9CB527700A} = {D2F0E031-FF17-4E95-9614-3411CBCC09EA}
 		{1F0804B4-A0EC-430E-8717-B9DBD5B0D646} = {1E82AC27-5FAB-4EA2-BED1-8E9CB527700A}
 		{B10A5211-0C95-43E2-8620-7B610AAB704F} = {1F0804B4-A0EC-430E-8717-B9DBD5B0D646}
+		{B87823FA-F6CA-4DED-820E-EEE931EDFDAA} = {25759563-6FD4-4CE5-ABB5-F8C18B39D2CE}
 	EndGlobalSection
 EndGlobal

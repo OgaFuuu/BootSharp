@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Les informations générales relatives à un assembly dépendent de 
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
-[assembly: AssemblyTitle("BootSharp.Business.Interfaces")]
-[assembly: AssemblyDescription("Business and Service interfaces")]
+[assembly: AssemblyTitle("BootSharp.Business")]
+[assembly: AssemblyDescription("Business layer base implementation.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("OgaFuuu")]
-[assembly: AssemblyProduct("BootSharp.Business.Interfaces")]
+[assembly: AssemblyProduct("BootSharp.Business")]
 [assembly: AssemblyCopyright("Copyright © OgaFuuu 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Le GUID suivant est pour l'ID de la typelib si ce projet est exposé à COM
-[assembly: Guid("2a0794b0-55a0-4054-b894-8292872fa264")]
+[assembly: Guid("b87823fa-f6ca-4ded-820e-eee931edfdaa")]
 
 // Les informations de version pour un assembly se composent des quatre valeurs suivantes :
 //
