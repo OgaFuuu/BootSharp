@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B87823FA-F6CA-4DED-820E-EEE931EDFDAA}</ProjectGuid>
+    <ProjectGuid>{7DE0A2DD-E61B-4B9E-B983-BF3BACB51AD5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BootSharp.Business</RootNamespace>
-    <AssemblyName>BootSharp.Business</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>BootSharp.Data.Paginate.Interfaces</RootNamespace>
+    <AssemblyName>BootSharp.Data.Paginate.Interfaces</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -40,44 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\CanRunResult.cs" />
-    <Compile Include="Commands\CommandBase.cs" />
-    <Compile Include="Commands\Data\DataCommandBase.cs" />
-    <Compile Include="Commands\Data\DeleteCommand.cs" />
-    <Compile Include="Commands\Data\ReadCommand.cs" />
-    <Compile Include="Commands\Data\UpdateCommand.cs" />
-    <Compile Include="Commands\Data\CreateCommand.cs" />
-    <Compile Include="Commands\Helpers\CommandHelper.cs" />
-    <Compile Include="DataServiceBase.cs" />
+    <Compile Include="IPagedList.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="ServiceBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="BootSharp.Data.Paginate.Interfaces.nuspec" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="B_Sharp_logo.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="BootSharp.Business.nuspec" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BootSharp.Business.Interfaces\BootSharp.Business.Interfaces.csproj">
-      <Project>{2a0794b0-55a0-4054-b894-8292872fa264}</Project>
-      <Name>BootSharp.Business.Interfaces</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BootSharp.Data.Interfaces\BootSharp.Data.Interfaces.csproj">
-      <Project>{0ef74a1c-7e37-46b7-9723-0bd5664f20e4}</Project>
-      <Name>BootSharp.Data.Interfaces</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

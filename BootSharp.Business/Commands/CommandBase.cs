@@ -2,15 +2,14 @@
 
 namespace BootSharp.Business.Commands
 {
-    public abstract class CommandBase : ICommand
+    public abstract class CommandBase<T> : ICommand<T>
     {
-        public abstract ICanRunResult CanRun(params object[] args);
+        public abstract ICanRunResult CanRun();
 
-        public abstract void Run(params object[] args);
+        public abstract T Run();
 
         public virtual void Dispose()
         {
         }
-
     }
 }

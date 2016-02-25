@@ -11,8 +11,8 @@
     <iconUrl>https://raw.githubusercontent.com/OgaFuuu/BootSharp/dev/B_Sharp_logo.ico</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Fixed Command.</releaseNotes>
+    <releaseNotes>Dropping an odious dependency on Data. Sorry guys.</releaseNotes>
     <copyright>Copyright 2016</copyright>
-    <tags>BUSINESS SERVICE</tags>
+    <tags>DATA PAGE PAGINATION</tags>
   </metadata>
 </package>

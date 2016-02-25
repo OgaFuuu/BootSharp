@@ -11,7 +11,7 @@
     <iconUrl>https://raw.githubusercontent.com/OgaFuuu/BootSharp/dev/B_Sharp_logo.ico</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial realease.</releaseNotes>
+    <releaseNotes>Fixed ICommand.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>BUSINESS SERVICE</tags>
   </metadata>
