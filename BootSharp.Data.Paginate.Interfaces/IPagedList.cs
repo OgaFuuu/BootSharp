@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace BootSharp.Data.Paginate.Interfaces
 {
-    public interface IPagedList<T> : IList<T>
+    public interface IPagedList : IList
     {
         /// <summary>
         /// Total number of page available in the original List.
@@ -18,5 +19,10 @@ namespace BootSharp.Data.Paginate.Interfaces
         /// The page number this paged list corresponds to in the original collection.
         /// </summary>
         int PageNumber { get; }
+    }
+
+    public interface IPagedList<T> : IPagedList, IList<T>
+    {
+
     }
 }

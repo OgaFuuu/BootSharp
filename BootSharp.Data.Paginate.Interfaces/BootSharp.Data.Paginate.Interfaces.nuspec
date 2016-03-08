@@ -11,7 +11,7 @@
     <iconUrl>https://raw.githubusercontent.com/OgaFuuu/BootSharp/dev/B_Sharp_logo.ico</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>initial release.</releaseNotes>
+    <releaseNotes>Added not strongly typed version of the interface.</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags>DATA PAGE PAGINATION</tags>
   </metadata>
